@@ -1,0 +1,9 @@
+li a {
+    color: green;
+}
+
+body {
+    background-image: url('img/jammy-jellyfish-hero.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

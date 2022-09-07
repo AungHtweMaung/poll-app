@@ -1,0 +1,22 @@
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>{{ question.question_text }}</h1></legend>
+        {% if error_message %}
+            <p><strong>{{ error_message }}</strong></p>
+        {% endif %}
+        {% for choice in question.choice_set.all %}
+            <!-- Get choice id  from attribute value="{{choice.id}}", according to the selected button -->
+            <!-- forloop.counter သည် radio btn မှာ current iteration item ကို choose လို့ရအောင် -->
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+        {% endfor %}
+    </fieldset>
+    <style>
+        input[type="submit"] {
+            margin-top: 10px;
+            padding: 10px 20px;
+        }
+    </style>
+    <input type="submit" value="Vote">
+</form>
